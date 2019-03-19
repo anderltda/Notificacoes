@@ -14,6 +14,8 @@
 		ACBF1DE422405937005329CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF1DE222405937005329CB /* LaunchScreen.storyboard */; };
 		ACBF1DEF22405937005329CB /* NotificacoesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF1DEE22405937005329CB /* NotificacoesTests.swift */; };
 		ACBF1DFA22405938005329CB /* NotificacoesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF1DF922405938005329CB /* NotificacoesUITests.swift */; };
+		ACBF1E0822407A18005329CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF1E0722407A18005329CB /* SettingsViewController.swift */; };
+		ACBF1E0A22408116005329CB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ACBF1E0922408116005329CB /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		ACBF1DF522405937005329CB /* NotificacoesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotificacoesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBF1DF922405938005329CB /* NotificacoesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificacoesUITests.swift; sourceTree = "<group>"; };
 		ACBF1DFB22405938005329CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACBF1E0722407A18005329CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ACBF1E0922408116005329CB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				ACBF1DD922405935005329CB /* AppDelegate.swift */,
 				ACBF1DDB22405935005329CB /* ViewController.swift */,
 				ACBF1DDD22405935005329CB /* Main.storyboard */,
+				ACBF1E0922408116005329CB /* Settings.bundle */,
+				ACBF1E0722407A18005329CB /* SettingsViewController.swift */,
 				ACBF1DE022405937005329CB /* Assets.xcassets */,
 				ACBF1DE222405937005329CB /* LaunchScreen.storyboard */,
 				ACBF1DE522405937005329CB /* Info.plist */,
@@ -229,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBF1E0A22408116005329CB /* Settings.bundle in Resources */,
 				ACBF1DE422405937005329CB /* LaunchScreen.storyboard in Resources */,
 				ACBF1DE122405937005329CB /* Assets.xcassets in Resources */,
 				ACBF1DDF22405935005329CB /* Main.storyboard in Resources */,
@@ -258,6 +265,7 @@
 			files = (
 				ACBF1DDC22405935005329CB /* ViewController.swift in Sources */,
 				ACBF1DDA22405935005329CB /* AppDelegate.swift in Sources */,
+				ACBF1E0822407A18005329CB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

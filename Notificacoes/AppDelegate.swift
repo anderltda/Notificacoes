@@ -7,15 +7,46 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let center = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        center.delegate = self
+        center.getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .denied:
+                print("Usuario negou")
+            case .authorized:
+                print("Usuario autorizou")
+            case .notDetermined:
+                let options: UNAuthorizationOptions = [.alert, .sound, .carPlay, .badge]
+                self.center.requestAuthorization(options: options, completionHandler: { (authorized, error) in
+                    if error != nil {
+                        print("Deu merda", error)
+                    } else {
+                        print("Autorizado?", authorized)
+                    }
+                })
+            case .provisional:
+                print("Ver depois !!! é muito novo e o tio Eric nunca usou!!")
+            }
+            
+        }
+        
+        let confirmAction = UNNotificationAction(identifier: "Confirm", title: "Já estudei🤪", options: [.foreground])
+        let cancelAction = UNNotificationAction(identifier: "Cancel", title: "Cancelar ⛄️", options: [])
+        let category = UNNotificationCategory(identifier: "Lembrete", actions: [confirmAction, cancelAction], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "",
+                                              options: [.customDismissAction])
+        
+        center.setNotificationCategories([category])
+        
         return true
     }
 
@@ -34,13 +65,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.badge, .alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let id = response.notification.request.identifier
+        print("ID:" + id)
+        
+        switch response.actionIdentifier {
+            case "Confirm":
+                print("Usuario tocou no botao de confirmacao")
+            case "Cancel":
+                print("Usuario tocou no botao de cancelar")
+            case UNNotificationDefaultActionIdentifier:
+                print("Usuario tocou na notificacao")
+            case UNNotificationDismissActionIdentifier:
+                print("Usuario dismissou a notificacao")
+            default:
+                print("Outra coisa")
+        }
+        
+        completionHandler()
+        
+    }
+    
+}
